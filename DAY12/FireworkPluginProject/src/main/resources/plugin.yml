@@ -1,0 +1,9 @@
+name: FireworkPlugin
+version: 1.0
+main: plugin.sample.Main
+api-version: 1.20
+
+commands:
+  firework:
+    description: プレイヤーがスニークした時に素数チェックし、素数なら花火を打ち上げるプラグイン
+    usage: /<command>

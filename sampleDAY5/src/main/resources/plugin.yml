@@ -1,0 +1,9 @@
+name: FireworkPlugin
+version: 1.0
+main: plugin.sample.Main
+api-version: 1.20
+
+commands:
+  firework:
+    description: プレイヤーの位置に花火を打ち上げます
+    usage: /<command>
