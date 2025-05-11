@@ -1,0 +1,46 @@
+plugins {
+    id 'java'
+}
+
+group = 'plugin'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    maven {
+        url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots'
+    }
+}
+
+dependencies {
+    compileOnly 'org.spigotmc:spigot-api:1.20.1-R0.1-SNAPSHOT'
+    compileOnly 'com.google.guava:guava:32.1.1-jre' // 脆弱性の警告回避
+
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+// plugin.yml の重複排除付きコピー
+tasks.processResources {
+    from('src/main/resources') {
+        include 'plugin.yml'
+    }
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+jar {
+    archiveBaseName.set('FireworkPlugin')
+    archiveVersion.set('1.0-SNAPSHOT')
+
+    // JARに依存ファイル（コンパイルのみ）を含める設定（必要なら残す）
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+
+    // plugin.yml の記述は削除！（processResources に任せる）
+}

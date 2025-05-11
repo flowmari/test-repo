@@ -1,0 +1,6 @@
+name: SneakFireworkPlugin
+version: 1.0
+main: plugin.sample.Main
+api-version: 1.20
+author: flowmari
+description: スニークで素数と花火、ベッドでインベントリ整理するプラグイン
